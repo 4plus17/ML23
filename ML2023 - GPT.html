@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Teamauswahl</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .team-text {
+      position: absolute;
+      left: 820px;
+      top: 10px;
+      width: 150px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Teamauswahl</h1>
+  <div class="teams">
+    <div class="row">
+      <div class="col-sm-6">
+        <img src="img/bumblebees.png" alt="Bumblebees" width="400" height="400" display="inline-block" class="team-button">
+      </div>
+      <div class="col-sm-6">
+        <img src="img/pinkies.png" alt="Pinkies" width="400" height="400" display="inline-block" class="team-button">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <img src="img/shiningswarm.png" alt="Shining Swarm" width="400" height="400" display="inline-block" class="team-button">
+      </div>
+      <div class="col-sm-6">
+        <img src="img/teamgalactic.png" alt="Team Galactic" width="400" height="400" display="inline-block" class="team-button">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <img src="img/snowballs.png" alt="Snowballs" width="400" height="400" display="inline-block" class="team-button">
+      </div>
+      <div class="col-sm-6">
+        <img src="img/glidingglaciers.png" alt="Gliding Glaciers" width="400" height="400" display="inline-block" class="team-button">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <img src="img/crazycatseyes.png" alt="Crazy Cat's Eyes" width="400" height="400" display="inline-block" class="team-button">
+      </div>
+      <div class="col-sm-6">
+        <img src="img/teammomo.png" alt="Team Momo" width="400" height="400" display="inline-block" class="team-button">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <img src="img/orangers.png" alt="O'rangers" width="400" height="400" display="inline-block" class="team-button">
+      </div>
+      <div class="col-sm-6">
+        <img src="img/mellowyellow.png" alt="Mellow Yellow" width="400" height="400" display="inline-block" class="team-button">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <img src="img/teamplasma.png" alt="Team Plasma" width="400" height="400" display="inline-block" class="team-button">
+      </div>
+      <div class="col-sm-6">
+        <img src="img/raspberryracers.png" alt="Raspberry Racers" width="400" height="400" display="inline-block" class="team-button">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <img src="img/midnightwisps.png" alt="Midnight Wisps" width="400" height="400" display="inline-block" class="team-button">
+      </div>
+      <div class="col-sm-6">
+        <img src="img/rojorollers.png" alt="Rojo Rollers" width="400" height="400" display="inline-block" class="team-button">
+      </div>
+    </div>
+  </div>
+  <script>
+    let textfield;
+
+function showText(event) {
+    // Das Textfeld wird auf dem Bildschirm angezeigt.
+    textfield = document.createElement("div");
+    textfield.classList.add("team-text");
+    textfield.style.width = "200px"; // Anpassen, je nach gewünschter Breite
+    textfield.style.height = "100px"; // Anpassen, je nach gewünschter Höhe
+    textfield.style.borderRadius = "10px"; // Anpassen, je nach gewünschtem Radius für die Ecken
+
+    // Teamnamen hinzufügen
+    var teamName = document.createElement("div");
+    teamName.textContent = event.target.alt;
+    textfield.appendChild(teamName);
+
+    // Eingabefeld hinzufügen
+    var inputField = document.createElement("input");
+    inputField.type = "text";
+    inputField.placeholder = "Dein Name"; // Anpassen, je nach gewünschtem Platzhaltertext
+    inputField.addEventListener("mousedown", function (event) {
+        event.stopPropagation();
+    });
+    textfield.appendChild(inputField);
+
+    document.body.appendChild(textfield);
+
+    // Die Position des Textfelds wird entsprechend dem Klick auf das Bild verschoben.
+    var rect = event.target.getBoundingClientRect();
+    var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var xPos = rect.left + scrollLeft + rect.width + 10; // Anpassen, je nach gewünschtem Abstand vom Bild
+    var yPos = rect.top + scrollTop + rect.height / 2 - textfield.clientHeight / 2; // Vertikal in der Mitte des Bildes positionieren
+    textfield.style.left = xPos + "px";
+    textfield.style.top = yPos + "px";
+
+    // Das Textfeld wird ausgeblendet, wenn man erneut auf das Team Bild klickt.
+    document.addEventListener("mousedown", function (event) {
+        if (event.target !== textfield && event.target !== event.currentTarget) {
+            textfield.remove();
+        }
+    });
+}
+
+// Die `team-button`-Elemente werden so konfiguriert, dass sie auf Klick die Funktion `showText()` aufrufen.
+var teamButtons = document.querySelectorAll("img.team-button");
+for (var i = 0; i < teamButtons.length; i++) {
+  teamButtons[i].addEventListener("click", showText);
+}
+
+  </script>
+</body>
+</html>
