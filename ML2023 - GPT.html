@@ -11,6 +11,7 @@
       top: 10px;
       width: 150px;
     }
+	
   </style>
 </head>
 <body>
@@ -94,7 +95,8 @@ function showText(event) {
     var inputField = document.createElement("input");
     inputField.type = "text";
     inputField.placeholder = "Dein Name"; // Anpassen, je nach gewünschtem Platzhaltertext
-    inputField.style.width = "50%"; // Anpassen, je nach gewünschter Breite des Eingabefelds
+    inputField.style.width = "75%"; // Anpassen, je nach gewünschter Breite des Eingabefelds
+    inputField.style.height = "100px"; // Anpassen, je nach gewünschter Höhe des Eingabefelds
     inputField.style.margin = "0 auto"; // Zentrieren des Eingabefelds
     inputField.addEventListener("mousedown", function (event) {
         event.stopPropagation();
@@ -111,20 +113,24 @@ function showText(event) {
         dropdownMenu.appendChild(option);
     }
     dropdownMenu.style.width = "51%";
+	dropdownMenu.style.height = "50px";
     dropdownMenu.style.padding = "8px";
     dropdownMenu.style.marginTop = "10px";
     textfield.appendChild(dropdownMenu);
 
     // Button hinzufügen
     var button = document.createElement("button");
-    button.textContent = "Wetten";
+    button.textContent = "Wetten (2000sats)";
     button.style.width = "100px";
     button.style.height = "50px";
     button.style.margin = "0 auto";
-    button.addEventListener("click", function (event) {
-        saveData(event);
-    });
-    textfield.appendChild(button);
+    button.style.position = "relative"; // Position des Buttons festlegen
+	button.style.left = "28px"; // Hier den gewünschten Wert für die Verschiebung nach rechts eintragen
+	button.style.top = inputField.offsetTop - 7 + "px"; // Position des Buttons auf gleicher Höhe wie das Eingabefeld festlegen
+	button.addEventListener("click", function (event) {
+    saveData(event);
+});
+textfield.appendChild(button);
 
     document.body.appendChild(textfield);
 
