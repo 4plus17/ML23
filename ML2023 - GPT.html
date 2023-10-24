@@ -82,7 +82,7 @@ function showText(event) {
     textfield.classList.add("team-text");
     textfield.style.width = "500px"; // Anpassen, je nach gewünschter Breite
     textfield.style.height = "250px"; // Anpassen, je nach gewünschter Höhe
-    textfield.style.borderRadius = "25px"; // Anpassen, je nach gewünschtem Radius für die Ecken
+    textfield.style.borderRadius = "10px"; // Anpassen, je nach gewünschtem Radius für die Ecken
 
     // Teamnamen hinzufügen
     var teamName = document.createElement("div");
@@ -105,7 +105,7 @@ function showText(event) {
     var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     var xPos = rect.left + scrollLeft + rect.width + 10; // Anpassen, je nach gewünschtem Abstand vom Bild
-    var yPos = rect.top + scrollTop + rect.height / 2 - textfield.clientHeight / 2; // Vertikal in der Mitte des Bildes positionieren
+    var yPos = rect.top + scrollTop + rect.height / 2 - textfield.clientHeight / 2 + 100; // Vertikal in der Mitte des Bildes positionieren
     textfield.style.left = xPos + "px";
     textfield.style.top = yPos + "px";
 
@@ -118,7 +118,7 @@ function showText(event) {
 }
 
 // Die `team-button`-Elemente werden so konfiguriert, dass sie auf Klick die Funktion `showText()` aufrufen.
-var teamButtons = document.querySelectorAll("img.team-button");
+var teamButtons = document.querySelectorAll(".teams .row .col-sm-6 img");
 for (var i = 0; i < teamButtons.length; i++) {
   teamButtons[i].addEventListener("click", showText);
 }
