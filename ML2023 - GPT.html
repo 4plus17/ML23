@@ -74,7 +74,7 @@
     </div>
   </div>
   <script>
-    let textfield;
+   let textfield;
 
 function showText(event) {
     // Das Textfeld wird auf dem Bildschirm angezeigt.
@@ -85,11 +85,11 @@ function showText(event) {
     textfield.style.borderRadius = "10px"; // Anpassen, je nach gewünschtem Radius für die Ecken
 
     // Teamnamen hinzufügen
-    var teamName = document.createElement("h2"); // Überschrift als h2-Element hinzufügen
+    var teamName = document.createElement("h"); // Überschrift als h-Element hinzufügen
     teamName.textContent = event.target.alt;
-    teamName.style.fontSize = "44px"; // Anpassen, je nach gewünschter Schriftgröße
+    teamName.style.fontSize = "64px"; // Anpassen, je nach gewünschter Schriftgröße
     textfield.appendChild(teamName);
-
+	
     // Eingabefeld hinzufügen
     var inputField = document.createElement("input");
     inputField.type = "text";
@@ -114,7 +114,18 @@ function showText(event) {
     dropdownMenu.style.padding = "8px";
     dropdownMenu.style.marginTop = "10px";
     textfield.appendChild(dropdownMenu);
-	
+
+    // Button hinzufügen
+    var button = document.createElement("button");
+    button.textContent = "Wetten";
+    button.style.width = "100px";
+    button.style.height = "50px";
+    button.style.margin = "0 auto";
+    button.addEventListener("click", function (event) {
+        saveData(event);
+    });
+    textfield.appendChild(button);
+
     document.body.appendChild(textfield);
 
     // Die Position des Textfelds wird entsprechend dem Klick auf das Bild verschoben.
@@ -138,6 +149,18 @@ function showText(event) {
 var teamButtons = document.querySelectorAll(".teams .row .col-sm-6 img");
 for (var i = 0; i < teamButtons.length; i++) {
   teamButtons[i].addEventListener("click", showText);
+}
+
+// Funktion zum Speichern der Daten
+function saveData(event) {
+    // Es wird überprüft, ob im Eingabefeld etwas eingetragen wurde.
+    if (event.target.parentElement.querySelector("input").value == "") {
+        // Wenn nichts eingetragen wurde, wird das Textfeld entfernt.
+        event.target.parentElement.remove();
+    } else {
+        // Wenn etwas eingetragen wurde, werden die Daten gespeichert.
+        // ...
+    }
 }
 
   </script>
