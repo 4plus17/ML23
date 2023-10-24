@@ -101,6 +101,20 @@ function showText(event) {
     });
     textfield.appendChild(inputField);
 
+// Dropdown-Menü hinzufügen
+    var dropdownMenu = document.createElement("select");
+    dropdownMenu.id = "dropdown-menu";
+    for (let i = 1; i <= 16; i++) {
+        var option = document.createElement("option");
+        option.value = "E" + i;
+        option.text = "E" + i;
+        dropdownMenu.appendChild(option);
+    }
+    dropdownMenu.style.width = "51%";
+    dropdownMenu.style.padding = "8px";
+    dropdownMenu.style.marginTop = "10px";
+    textfield.appendChild(dropdownMenu);
+	
     document.body.appendChild(textfield);
 
     // Die Position des Textfelds wird entsprechend dem Klick auf das Bild verschoben.
@@ -112,9 +126,9 @@ function showText(event) {
     textfield.style.left = xPos + "px";
     textfield.style.top = yPos + "px";
 
-    // Das Textfeld wird ausgeblendet, wenn man erneut auf das Team Bild klickt.
+    // Das Textfeld wird ausgeblendet, wenn man ein neues Bild anklickt.
     document.addEventListener("mousedown", function (event) {
-        if (event.target !== textfield && event.target !== event.currentTarget) {
+        if (event.target !== textfield && event.target.classList.contains("team-button")) {
             textfield.remove();
         }
     });
@@ -125,7 +139,6 @@ var teamButtons = document.querySelectorAll(".teams .row .col-sm-6 img");
 for (var i = 0; i < teamButtons.length; i++) {
   teamButtons[i].addEventListener("click", showText);
 }
-
 
   </script>
 </body>
