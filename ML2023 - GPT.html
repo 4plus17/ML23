@@ -85,14 +85,17 @@ function showText(event) {
     textfield.style.borderRadius = "10px"; // Anpassen, je nach gewünschtem Radius für die Ecken
 
     // Teamnamen hinzufügen
-    var teamName = document.createElement("div");
+    var teamName = document.createElement("h2"); // Überschrift als h2-Element hinzufügen
     teamName.textContent = event.target.alt;
+    teamName.style.fontSize = "44px"; // Anpassen, je nach gewünschter Schriftgröße
     textfield.appendChild(teamName);
 
     // Eingabefeld hinzufügen
     var inputField = document.createElement("input");
     inputField.type = "text";
     inputField.placeholder = "Dein Name"; // Anpassen, je nach gewünschtem Platzhaltertext
+    inputField.style.width = "50%"; // Anpassen, je nach gewünschter Breite des Eingabefelds
+    inputField.style.margin = "0 auto"; // Zentrieren des Eingabefelds
     inputField.addEventListener("mousedown", function (event) {
         event.stopPropagation();
     });
@@ -105,7 +108,7 @@ function showText(event) {
     var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     var xPos = rect.left + scrollLeft + rect.width + 10; // Anpassen, je nach gewünschtem Abstand vom Bild
-    var yPos = rect.top + scrollTop + rect.height / 2 - textfield.clientHeight / 2 + 100; // Vertikal in der Mitte des Bildes positionieren
+    var yPos = rect.top + scrollTop + rect.height / 2 - textfield.clientHeight / 2 + 100; // Vertikal um 50px tiefer positionieren
     textfield.style.left = xPos + "px";
     textfield.style.top = yPos + "px";
 
@@ -122,6 +125,7 @@ var teamButtons = document.querySelectorAll(".teams .row .col-sm-6 img");
 for (var i = 0; i < teamButtons.length; i++) {
   teamButtons[i].addEventListener("click", showText);
 }
+
 
   </script>
 </body>
