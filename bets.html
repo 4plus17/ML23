@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gespeicherte Wetten</title>
+  <style>
+    body {
+      color: white;
+      background-color: black;
+      font-size: 20px; /* Schriftgröße für bessere Lesbarkeit auf Mobilgeräten erhöhen */
+    }
+
+    .bet-table {
+      font-family: Arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%; /* Tabellenbreite auf 100% setzen, um die gesamte Breite auf Mobilgeräten auszufüllen */
+      margin-top: 50px;
+      background-color: #ffcd59;
+      color: black;
+    }
+
+    .bet-table th {
+      background-color: #ffcd59;
+      color: black;
+      text-align: left;
+      padding: 18px; /* Polsterung für bessere Lesbarkeit erhöhen */
+    }
+
+    .bet-table td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 18px; /* Polsterung für bessere Lesbarkeit erhöhen */
+    }
+
+    .bet-table tr:nth-child(even) {
+      background-color: #ffab04;
+    }
+
+    .bet-table tr:nth-child(odd) {
+      background-color: #ffca99;
+    }
+
+    button {
+      color: black;
+      padding: 15px 30px; /* Größe des Buttons für Mobilgeräte anpassen */
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 24px; /* Schriftgröße für bessere Sichtbarkeit auf Mobilgeräten erhöhen */
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h2>Gespeicherte Wetten</h2>
+
+
+
+  <script>
+    const bets = JSON.parse(localStorage.getItem('bets')) || {};
+
+    // Sortieren der Wetten nach Event
+    const betsByEvent = {};
+    bets.forEach(bet => {
+      if (!betsByEvent[bet.selectedEvent]) {
+        betsByEvent[bet.selectedEvent] = [];
+      }
+      betsByEvent[bet.selectedEvent].push(bet);
+    });
+
+    // Erstellen von Tabellen für jedes Event mit Überschrift
+    for (const event in betsByEvent) {
+      const table = document.createElement('table');
+      table.classList.add('bet-table');
+
+      const headerRow = table.insertRow();
+      const eventHeader = document.createElement('th');
+      eventHeader.setAttribute('colspan', '2');
+      eventHeader.innerText = `${event}`;
+      headerRow.appendChild(eventHeader);
+
+      const subHeaderRow = table.insertRow();
+      const teamHeader = subHeaderRow.insertCell(0);
+      const nameHeader = subHeaderRow.insertCell(1);
+      teamHeader.innerText = 'Team';
+      nameHeader.innerText = 'Name';
+
+      betsByEvent[event].forEach(bet => {
+        const row = table.insertRow();
+        const teamCell = row.insertCell(0);
+        const nameCell = row.insertCell(1);
+        teamCell.innerText = bet.selectedTeam;
+        nameCell.innerText = bet.inputName;
+      });
+
+      document.body.appendChild(table);
+    }
+
+    // Button zum Löschen der Einträge
+    const clearButton = document.createElement('button');
+    clearButton.innerText = 'Einträge löschen';
+    clearButton.addEventListener('click', function() {
+      localStorage.removeItem('bets');
+      location.reload(); // Seite neu laden, um die Änderungen anzuzeigen
+    });
+    document.body.appendChild(clearButton);
+  </script>
+</body>
+</html>
