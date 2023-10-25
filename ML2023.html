@@ -106,7 +106,8 @@ function showText(event) {
     });
     textfield.appendChild(inputField);
 
-// Dropdown-Menü hinzufügen
+
+	// Dropdown-Menü hinzufügen
     var dropdownMenu = document.createElement("select");
     dropdownMenu.id = "dropdown-menu";
     for (let i = 1; i <= 16; i++) {
@@ -132,8 +133,8 @@ function showText(event) {
 	button.style.top = inputField.offsetTop - 7 + "px"; // Position des Buttons auf gleicher Höhe wie das Eingabefeld festlegen
 	button.addEventListener("click", function (event) {
     saveData(event);
-});
-textfield.appendChild(button);
+	});
+	textfield.appendChild(button);
 
     document.body.appendChild(textfield);
 
@@ -162,15 +163,22 @@ for (var i = 0; i < teamButtons.length; i++) {
 
 // Funktion zum Speichern der Daten
 function saveData(event) {
-    // Es wird überprüft, ob im Eingabefeld etwas eingetragen wurde.
-    if (event.target.parentElement.querySelector("input").value == "") {
-        // Wenn nichts eingetragen wurde, wird das Textfeld entfernt.
-        event.target.parentElement.remove();
-    } else {
-        // Wenn etwas eingetragen wurde, werden die Daten gespeichert.
-        // ...
+    if (event.target.parentElement.querySelector("input").value != "") {
+        const bet = {
+            selectedTeam: event.target.parentElement.querySelector("h").innerText,
+            inputName: event.target.parentElement.querySelector("input").value,
+            selectedEvent: event.target.parentElement.querySelector("select").value
+        };
+
+        let bets = JSON.parse(localStorage.getItem('bets')) || [];
+        bets.push(bet);
+        localStorage.setItem('bets', JSON.stringify(bets));
+        window.location.href = 'bets.html';
     }
 }
+
+
+
 
   </script>
 </body>
