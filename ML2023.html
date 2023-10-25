@@ -14,11 +14,24 @@
 	input::placeholder {
     font-size: 32px; /* Anpassen Sie die Schriftgröße entsprechend Ihrer Anforderungen */
 }
-	
+	button {
+            color: black;
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
   </style>
 </head>
 <body>
   <h1>Teamauswahl</h1>
+  <button onclick="window.location.href='bets.html'">Zu den gespeicherten Wetten</button>
   <div class="teams">
     <div class="row">
       <div class="col-sm-6">
@@ -125,12 +138,12 @@ function showText(event) {
     // Button hinzufügen
     var button = document.createElement("button");
     button.textContent = "Wetten (2000sats)";
-    button.style.width = "100px";
-    button.style.height = "50px";
+    button.style.width = "200px";
+    button.style.height = "72px";
     button.style.margin = "0 auto";
     button.style.position = "relative"; // Position des Buttons festlegen
 	button.style.left = "28px"; // Hier den gewünschten Wert für die Verschiebung nach rechts eintragen
-	button.style.top = inputField.offsetTop - 7 + "px"; // Position des Buttons auf gleicher Höhe wie das Eingabefeld festlegen
+	button.style.top = inputField.offsetTop + "px"; // Position des Buttons auf gleicher Höhe wie das Eingabefeld festlegen
 	button.addEventListener("click", function (event) {
     saveData(event);
 	});
