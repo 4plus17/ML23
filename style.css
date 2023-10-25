@@ -39,4 +39,17 @@ h1 {
   transform: translateY(-50%);
   width: 150px;
 }
+.team-text button {
+    left: 10px;
+    top: 20px;
+}
+.team-text button {
+    right: 50px;
+}
 
+
+.dropdown-menu {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+}
